@@ -1,0 +1,8 @@
+#!/bin/bash
+
+mkdir -p "${HOME}/.cassandra" \
+  && sed -e "s/127.0.0.1/${HOSTNAME}/" /opt/cassandra/conf/cqlshrc.sample > "${HOME}/.cassandra/cqlshrc"
+
+sed -i -e "s/127.0.0.1/${HOSTNAME}/" /opt/cassandra/conf/cassandra.yaml
+
+su-exec cassandra /opt/cassandra/bin/cassandra -f
